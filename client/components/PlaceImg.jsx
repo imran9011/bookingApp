@@ -9,7 +9,7 @@ export default function PlaceImg({ place, index = 0, className = null }) {
     <>
       {place.photos.length > 0 && (
         <>
-          <img className={className} src={import.meta.env.VITE_HOME_URL + "/uploads/" + place.photos[index]}></img>
+          <img className={className} src={place.photos[index]}></img>
         </>
       )}
     </>

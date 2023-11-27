@@ -31,7 +31,7 @@ export default function IndexPage() {
         places.map((place) => (
           <Link key={place._id} to={"/place/" + place._id}>
             <div className="bg-gray-400 rounded-2xl">
-              <img className="rounded-2xl h-72 w-full mb-2 object-cover aspect-square" src={import.meta.env.VITE_HOME_URL + "/uploads/" + place.photos?.[0]} />
+              <img className="rounded-2xl h-72 w-full mb-2 object-cover aspect-square" src={place.photos?.[0]} />
             </div>
             <h2 className="font-bold">{place.address}</h2>
             <h3 className="text-sm text-gray-500 ">{place.title}</h3>

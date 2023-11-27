@@ -19,7 +19,7 @@ export default function PlaceGallery({ place }) {
           {place?.photos?.length > 0 &&
             place.photos.map((photo) => (
               <div key={photo}>
-                <img src={import.meta.env.VITE_HOME_URL + "/uploads/" + photo} />
+                <img src={photo} />
               </div>
             ))}
         </div>
@@ -31,12 +31,12 @@ export default function PlaceGallery({ place }) {
     <div className="relative justify-center max-w-3xl">
       <div className="grid max-w-3xl gap-2 grid-cols-[1fr_1fr] rounded-2xl overflow-hidden ">
         <div className="grid rounded-2xl ">
-          <div className="overflow-hidden">{place.photos?.[0] && <img className="aspect-square object-cover" src={import.meta.env.VITE_HOME_URL + "/uploads/" + place.photos[0]} />}</div>
-          <div className="overflow-hidden">{place.photos?.[3] && <img className="aspect-square object-cover relative top-2" src={import.meta.env.VITE_HOME_URL + "/uploads/" + place.photos[3]} />}</div>
+          <div className="overflow-hidden">{place.photos?.[0] && <img className="aspect-square object-cover" src={place.photos[0]} />}</div>
+          <div className="overflow-hidden">{place.photos?.[3] && <img className="aspect-square object-cover relative top-2" src={place.photos[3]} />}</div>
         </div>
         <div className="grid rounded-2xl">
-          <div className="overflow-hidden">{place.photos?.[1] && <img className="aspect-square object-cover" src={import.meta.env.VITE_HOME_URL + "/uploads/" + place.photos[1]} />}</div>
-          <div className="overflow-hidden">{place.photos?.[2] && <img className="aspect-square object-cover relative top-2" src={import.meta.env.VITE_HOME_URL + "/uploads/" + place.photos[2]} />}</div>
+          <div className="overflow-hidden">{place.photos?.[1] && <img className="aspect-square object-cover" src={place.photos[1]} />}</div>
+          <div className="overflow-hidden">{place.photos?.[2] && <img className="aspect-square object-cover relative top-2" src={place.photos[2]} />}</div>
         </div>
       </div>
       <button onClick={() => setShowAllPhotos(true)} className="flex gap-1 relative bottom-12 left-2 rounded-2xl left-3/4 py-2 px-4 shadow shadow-md shadow-gray-500">

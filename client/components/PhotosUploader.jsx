@@ -6,14 +6,16 @@ export default function PhotosUploader({ addedPhotos, setAddedPhotos }) {
 
   async function addPhotoLink(e) {
     e.preventDefault();
-    const { data: filename } = await axios.post(
-      "/api/accom/upload-by-link",
-      {
-        link: photoLink,
-      },
-      { withCredentials: true }
-    );
-    setAddedPhotos((prev) => [...prev, filename]);
+    // commented out as images on free tier of render do not persist
+    // so urls to 3rd party websites will be used instead
+    // const { data: filename } = await axios.post(
+    //   "/api/accom/upload-by-link",
+    //   {
+    //     link: photoLink,
+    //   },
+    //   { withCredentials: true }
+    // );
+    setAddedPhotos((prev) => [...prev, photoLink]);
     setPhotoLink("");
   }
 
@@ -54,17 +56,20 @@ export default function PhotosUploader({ addedPhotos, setAddedPhotos }) {
         </button>
       </div>
       <div className="mt-2 grid grid-cols-3 lg:grid-cols-6 md:grid-cols-4 gap-2">
-        <label className="h-32 cursor-pointer gap-1 flex justify-center items-center border bg-transparent rounded-2xl p-8 text-3xl text-gray-600">
+        {
+          // does not work on free tier of render as information does not persist
+          /* <label className="h-32 cursor-pointer gap-1 flex justify-center items-center border bg-transparent rounded-2xl p-8 text-3xl text-gray-600">
           <input type="file" multiple className="hidden" onChange={uploadPhoto} />
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
           </svg>
           Upload
-        </label>
+        </label> */
+        }
         {addedPhotos.length > 0 &&
           addedPhotos.map((link) => (
             <div key={link} className="h-32 flex relative">
-              <img className="rounded-2xl w-full object-cover" src={import.meta.env.VITE_HOME_URL + "/uploads/" + link}></img>
+              <img className="rounded-2xl w-full object-cover" src={link}></img>
               <button onClick={(e) => removePhoto(e, link)} className="cursor-pointer absolute bottom-1 right-1 text-white bg-black bg-opacity-50 rounded-2xl py-2 px-3">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                   <path
